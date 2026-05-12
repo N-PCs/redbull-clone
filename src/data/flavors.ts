@@ -20,6 +20,8 @@ export type Flavor = {
   accent: string;
   price: number;
   image: string;
+  /** true when the source PNG has a white (non-transparent) background */
+  hasWhiteBg?: boolean;
 };
 
 export const flavors: Flavor[] = [
@@ -42,6 +44,7 @@ export const flavors: Flavor[] = [
     accent: "#FFCC00",
     price: 3.29,
     image: watermelon,
+    hasWhiteBg: true,
   },
   {
     id: "dragonfruit",
@@ -72,6 +75,7 @@ export const flavors: Flavor[] = [
     accent: "#000B29",
     price: 3.29,
     image: tropical,
+    hasWhiteBg: true,
   },
   {
     id: "blueberry",
@@ -92,6 +96,7 @@ export const flavors: Flavor[] = [
     accent: "#FFCC00",
     price: 3.29,
     image: pink,
+    hasWhiteBg: true,
   },
   {
     id: "coconut",

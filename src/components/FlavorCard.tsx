@@ -38,23 +38,13 @@ export function FlavorCard({ flavor, hideCan = false }: { flavor: Flavor; hideCa
             src={flavor.image}
             alt={`Red Bull ${flavor.title}`}
             loading="lazy"
-            className="h-full max-h-[280px] w-auto object-contain drop-shadow-[0_25px_35px_rgba(0,0,0,0.6)] transition-transform duration-500 group-hover:scale-105 group-hover:-rotate-3"
+            className={`h-full max-h-[280px] w-auto object-contain drop-shadow-[0_25px_35px_rgba(0,0,0,0.6)] transition-transform duration-500 group-hover:scale-105 group-hover:-rotate-3${flavor.hasWhiteBg ? " mix-blend-multiply" : ""}`}
           />
         )}
       </div>
 
       <div className="relative z-10 p-5 space-y-3">
-        <p className="text-xs text-white/85 leading-snug min-h-[2.5rem]">{flavor.description}</p>
-        <div className="flex gap-2">
-          <button
-            className="flex-1 py-2.5 text-[11px] font-bold uppercase tracking-widest bg-white text-[var(--rb-blue-deep)] hover:bg-[var(--rb-yellow)] transition"
-          >
-            Add to Cart
-          </button>
-          <button className="px-3 py-2.5 text-[11px] font-bold uppercase tracking-widest border border-white/40 text-white hover:bg-white/10 transition">
-            Learn
-          </button>
-        </div>
+        <p className="text-lg text-white/85 leading-snug min-h-[2.5rem]">{flavor.description}</p>
       </div>
     </article>
   );

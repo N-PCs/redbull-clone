@@ -110,16 +110,10 @@ function Index() {
               <span className="text-stroke">PERFORMANCE.</span>
             </h1>
             <p className="mt-8 text-base md:text-lg text-white/70 max-w-lg leading-relaxed">
-              Six flavors. One mission. Engineered to vitalize body and mind for athletes,
+              Multiple flavors. One mission. Engineered to vitalize body and mind for athletes,
               creators, and anyone chasing the impossible.
             </p>
             <div className="mt-10 flex flex-wrap gap-4">
-              <a
-                href="#marketplace"
-                className="px-7 py-4 bg-[var(--rb-red)] text-white text-sm font-bold uppercase tracking-[0.2em] hover:bg-[var(--rb-yellow)] hover:text-[var(--rb-blue-deep)] transition"
-              >
-                Shop the Lineup
-              </a>
               <a
                 href="#flavors"
                 className="px-7 py-4 border border-white/30 text-white text-sm font-bold uppercase tracking-[0.2em] hover:border-[var(--rb-yellow)] hover:text-[var(--rb-yellow)] transition"
@@ -142,13 +136,6 @@ function Index() {
             </div>
           </div>
         </div>
-
-        {/* vertical scroll cue */}
-        <div className="absolute bottom-8 left-6 flex items-center gap-3 text-xs uppercase tracking-[0.3em] text-white/40">
-          <div className="h-10 w-px bg-white/30 animate-pulse" />
-          Scroll to ignite
-        </div>
-
         {/* edge label */}
         <div className="hidden lg:block absolute right-6 top-1/2 -translate-y-1/2 -rotate-90 origin-right text-[10px] uppercase tracking-[0.6em] text-white/30">
           Vitalizes Body & Mind — Est. 1987
@@ -160,7 +147,7 @@ function Index() {
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid md:grid-cols-12 gap-10 items-end mb-20">
             <div className="md:col-span-7">
-              <span className="text-xs uppercase tracking-[0.4em] text-[var(--rb-red)]">/ The Formula</span>
+              <span className="text-xs uppercase tracking-[0.4em] text-[var(--rb-red)]">The Formula</span>
               <h2 className="display text-5xl md:text-7xl mt-4 skew-italic leading-[0.9]">
                 ICE-COLD<br />ENGINEERING.
               </h2>
@@ -193,7 +180,7 @@ function Index() {
         <div className="max-w-7xl mx-auto px-6">
           <div className="flex items-center gap-3 mb-6">
             <span className="h-px w-12 bg-[var(--rb-red)]" />
-            <span className="text-xs uppercase tracking-[0.4em] text-white/60">/ Six Editions</span>
+            <span className="text-xs uppercase tracking-[0.4em] text-white/60"> Multiple Editions</span>
           </div>
           <h2 className="display text-6xl md:text-8xl skew-italic leading-[0.9] max-w-4xl">
             PICK YOUR <span className="text-[var(--rb-red)]">WINGS.</span>
@@ -215,7 +202,7 @@ function Index() {
       {/* FOOTER */}
       <footer className="border-t border-white/10 py-12">
         <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4 text-xs uppercase tracking-[0.3em] text-white/40">
-          <span className="display text-2xl text-[var(--rb-yellow)] skew-italic">RED BULL</span>
+          <span className="display text-2xl text-[var(--rb-yellow)] skew-italic"><img src="redbull-icon.svg" height={"75"} width={"150"} alt="Red Bull" /></span>
           <span>© 2026 — Vitalizes Body & Mind</span>
           <span>Drink Responsibly</span>
         </div>

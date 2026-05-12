@@ -88,3 +88,35 @@
 }
 
 .skew-italic { font-style: italic; transform: skewX(-8deg); display: inline-block; }
+
+/* ── Hero floating can ─────────────────────────────────── */
+.hero-can-wrapper {
+  perspective: 800px;
+}
+
+.hero-can {
+  width: 55%;
+  max-width: 380px;
+  height: auto;
+  object-fit: contain;
+  animation: heroFloat 4s ease-in-out infinite;
+  filter:
+    drop-shadow(0 0 40px rgba(237, 27, 36, 0.35))
+    drop-shadow(0 0 80px rgba(0, 30, 92, 0.3))
+    drop-shadow(0 30px 60px rgba(0, 0, 0, 0.5));
+  transition: transform 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+  will-change: transform, filter;
+}
+
+.hero-can-wrapper:hover .hero-can {
+  transform: rotateY(-8deg) rotateX(4deg) scale(1.04);
+  filter:
+    drop-shadow(0 0 60px rgba(237, 27, 36, 0.5))
+    drop-shadow(0 0 100px rgba(0, 30, 92, 0.45))
+    drop-shadow(0 40px 80px rgba(0, 0, 0, 0.55));
+}
+
+@keyframes heroFloat {
+  0%, 100% { transform: translateY(0) rotate(-2deg); }
+  50% { transform: translateY(-18px) rotate(2deg); }
+}
