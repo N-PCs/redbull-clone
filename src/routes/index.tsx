@@ -1,0 +1,225 @@
+import { useEffect, useRef } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { Can3D } from "@/components/Can3D";
+import { SiteNav } from "@/components/SiteNav";
+import { FlavorCard } from "@/components/FlavorCard";
+import { flavors } from "@/data/flavors";
+import { createFileRoute } from "@tanstack/react-router";
+
+gsap.registerPlugin(ScrollTrigger);
+
+export const Route = createFileRoute("/")({
+  component: Index,
+  head: () => ({
+    meta: [
+      { title: "Red Bull — Fuel Your Performance | Flavors & Marketplace" },
+      { name: "description", content: "Cinematic 3D Red Bull experience. Explore six bold flavors and shop the marketplace." },
+    ],
+  }),
+});
+
+function Index() {
+  const canRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!canRef.current) return;
+    const el = canRef.current;
+    const target = document.querySelector('[data-can-slot="original"]') as HTMLElement | null;
+
+    const ctx = gsap.context(() => {
+      // Phase 1 -> 2: drift horizontally as user scrolls hero/features
+      gsap.to(el, {
+        scrollTrigger: {
+          trigger: "#hero",
+          start: "top top",
+          endTrigger: "#features",
+          end: "bottom center",
+          scrub: 1,
+        },
+        xPercent: -25,
+        rotate: -15,
+        scale: 0.85,
+      });
+
+      // Phase 3: lock into the marketplace card, then morph 3D -> 2D
+      if (target) {
+        const img = target.querySelector("img") as HTMLElement | null;
+        if (img) gsap.set(img, { opacity: 0 });
+
+        gsap.to(el, {
+          scrollTrigger: {
+            trigger: "#flavors",
+            start: "top 70%",
+            endTrigger: "#marketplace",
+            end: "top 30%",
+            scrub: 1,
+            onUpdate: (self) => {
+              // Cross-fade: 3D fades out, 2D fades in over the last 40%
+              const p = self.progress;
+              const fade = Math.max(0, (p - 0.6) / 0.4);
+              el.style.opacity = String(1 - fade);
+              if (img) img.style.opacity = String(fade);
+            },
+          },
+          x: () => {
+            const r = target.getBoundingClientRect();
+            const c = el.getBoundingClientRect();
+            return r.left + r.width / 2 - (c.left + c.width / 2);
+          },
+          y: () => {
+            const r = target.getBoundingClientRect();
+            const c = el.getBoundingClientRect();
+            return r.top + r.height / 2 - (c.top + c.height / 2);
+          },
+          scale: 0.5,
+          rotate: 0,
+          ease: "power2.inOut",
+        });
+      }
+    });
+
+    return () => ctx.revert();
+  }, []);
+
+  return (
+    <div id="top" className="bg-[var(--rb-blue-deep)] text-white">
+      <SiteNav />
+
+      {/* Persistent floating 3D can */}
+      <div
+        ref={canRef}
+        className="fixed top-0 right-0 w-[55vw] md:w-[45vw] lg:w-[40vw] h-screen z-30 pointer-events-none transition-opacity duration-500"
+      >
+        <Can3D className="w-full h-full" />
+      </div>
+
+      {/* HERO */}
+      <section id="hero" className="relative min-h-screen bg-grid pt-20 overflow-hidden">
+        <div className="max-w-7xl mx-auto px-6 pt-16 md:pt-24 relative">
+          <div className="max-w-2xl relative z-10">
+            <div className="flex items-center gap-3 mb-6">
+              <span className="h-px w-12 bg-[var(--rb-yellow)]" />
+              <span className="text-xs uppercase tracking-[0.4em] text-[var(--rb-yellow)]">Series 2026 / Performance Drop</span>
+            </div>
+            <h1 className="display text-[14vw] md:text-[9vw] leading-[0.85] skew-italic">
+              FUEL
+              <br />
+              <span className="text-[var(--rb-red)]">YOUR</span>
+              <br />
+              <span className="text-stroke">PERFORMANCE.</span>
+            </h1>
+            <p className="mt-8 text-base md:text-lg text-white/70 max-w-lg leading-relaxed">
+              Six flavors. One mission. Engineered to vitalize body and mind for athletes,
+              creators, and anyone chasing the impossible.
+            </p>
+            <div className="mt-10 flex flex-wrap gap-4">
+              <a
+                href="#marketplace"
+                className="px-7 py-4 bg-[var(--rb-red)] text-white text-sm font-bold uppercase tracking-[0.2em] hover:bg-[var(--rb-yellow)] hover:text-[var(--rb-blue-deep)] transition"
+              >
+                Shop the Lineup
+              </a>
+              <a
+                href="#flavors"
+                className="px-7 py-4 border border-white/30 text-white text-sm font-bold uppercase tracking-[0.2em] hover:border-[var(--rb-yellow)] hover:text-[var(--rb-yellow)] transition"
+              >
+                Explore Flavors
+              </a>
+            </div>
+
+            <div className="mt-20 grid grid-cols-3 gap-8 max-w-md">
+              {[
+                { v: "8.4", l: "FL OZ" },
+                { v: "80mg", l: "Caffeine" },
+                { v: "0", l: "Compromise" },
+              ].map((s) => (
+                <div key={s.l}>
+                  <div className="display text-3xl text-[var(--rb-yellow)] skew-italic">{s.v}</div>
+                  <div className="text-[10px] uppercase tracking-[0.25em] text-white/50 mt-1">{s.l}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* vertical scroll cue */}
+        <div className="absolute bottom-8 left-6 flex items-center gap-3 text-xs uppercase tracking-[0.3em] text-white/40">
+          <div className="h-10 w-px bg-white/30 animate-pulse" />
+          Scroll to ignite
+        </div>
+
+        {/* edge label */}
+        <div className="hidden lg:block absolute right-6 top-1/2 -translate-y-1/2 -rotate-90 origin-right text-[10px] uppercase tracking-[0.6em] text-white/30">
+          Vitalizes Body & Mind — Est. 1987
+        </div>
+      </section>
+
+      {/* FEATURES */}
+      <section id="features" className="relative py-32 border-t border-white/5">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="grid md:grid-cols-12 gap-10 items-end mb-20">
+            <div className="md:col-span-7">
+              <span className="text-xs uppercase tracking-[0.4em] text-[var(--rb-red)]">/ The Formula</span>
+              <h2 className="display text-5xl md:text-7xl mt-4 skew-italic leading-[0.9]">
+                ICE-COLD<br />ENGINEERING.
+              </h2>
+            </div>
+            <p className="md:col-span-5 text-white/60 text-lg leading-relaxed">
+              Each can is precision-crafted with taurine, B-vitamins, and real cane sugar
+              (or none, if you prefer) — kept frosty for maximum impact.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-6">
+            {[
+              { n: "01", t: "Taurine Charged", d: "1000mg of taurine to support mental and physical performance." },
+              { n: "02", t: "B-Vitamin Complex", d: "Niacin, B6, B12 and pantothenic acid for everyday energy." },
+              { n: "03", t: "Crafted Cold", d: "Best served chilled. Aluminum cans recyclable, infinitely." },
+            ].map((f) => (
+              <div key={f.n} className="border border-white/10 p-8 hover:border-[var(--rb-yellow)] transition group">
+                <div className="display text-5xl text-[var(--rb-yellow)] skew-italic">{f.n}</div>
+                <h3 className="display text-2xl mt-4 skew-italic">{f.t.toUpperCase()}</h3>
+                <p className="text-sm text-white/60 mt-3 leading-relaxed">{f.d}</p>
+                <div className="h-px w-0 group-hover:w-full bg-[var(--rb-red)] transition-all duration-500 mt-6" />
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* FLAVOR INTRO */}
+      <section id="flavors" className="relative py-24 border-t border-white/5">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="flex items-center gap-3 mb-6">
+            <span className="h-px w-12 bg-[var(--rb-red)]" />
+            <span className="text-xs uppercase tracking-[0.4em] text-white/60">/ Six Editions</span>
+          </div>
+          <h2 className="display text-6xl md:text-8xl skew-italic leading-[0.9] max-w-4xl">
+            PICK YOUR <span className="text-[var(--rb-red)]">WINGS.</span>
+          </h2>
+        </div>
+      </section>
+
+      {/* MARKETPLACE */}
+      <section id="marketplace" className="relative pb-32 pt-8">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+            {flavors.map((f) => (
+              <FlavorCard key={f.id} flavor={f} />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* FOOTER */}
+      <footer className="border-t border-white/10 py-12">
+        <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4 text-xs uppercase tracking-[0.3em] text-white/40">
+          <span className="display text-2xl text-[var(--rb-yellow)] skew-italic">RED BULL</span>
+          <span>© 2026 — Vitalizes Body & Mind</span>
+          <span>Drink Responsibly</span>
+        </div>
+      </footer>
+    </div>
+  );
+}
