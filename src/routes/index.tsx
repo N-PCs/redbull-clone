@@ -34,7 +34,21 @@ function Index() {
       return x * x * (3 - 2 * x);
     };
 
+    const prefersReducedMotion =
+      typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
     const ctx = gsap.context(() => {
+      if (prefersReducedMotion) {
+        gsap.set([flyLayer, driftLayer], { clearProps: "all" });
+        flyLayer.style.opacity = "0";
+        flyLayer.dataset.canDocking = "1";
+        if (target) {
+          const img = target.querySelector("img") as HTMLElement | null;
+          if (img) gsap.set(img, { opacity: 1 });
+        }
+        return;
+      }
+
       // Phase 1 -> 2: drift on inner layer only (avoids fighting the marketplace fly tween)
       gsap.to(driftLayer, {
         scrollTrigger: {
@@ -42,7 +56,8 @@ function Index() {
           start: "top top",
           endTrigger: "#features",
           end: "bottom center",
-          scrub: 1,
+          scrub: 0.35,
+          fastScrollEnd: true,
         },
         xPercent: -25,
         rotate: -15,
@@ -60,7 +75,8 @@ function Index() {
             start: "top 72%",
             endTrigger: "#marketplace",
             end: "top 28%",
-            scrub: 1.15,
+            scrub: 0.45,
+            fastScrollEnd: true,
             invalidateOnRefresh: true,
             onUpdate: (self) => {
               const p = self.progress;
@@ -121,9 +137,9 @@ function Index() {
       {/* Persistent floating 3D can */}
       <div
         ref={canRef}
-        className="fixed top-0 right-0 w-[55vw] md:w-[45vw] lg:w-[40vw] h-screen z-30 pointer-events-none will-change-transform"
+        className="fixed top-0 right-0 w-[55vw] md:w-[45vw] lg:w-[40vw] h-screen z-30 pointer-events-none max-md:w-[50vw] isolate"
       >
-        <div ref={driftRef} className="w-full h-full will-change-transform">
+        <div ref={driftRef} className="w-full h-full">
           <Can3D className="w-full h-full" />
         </div>
       </div>

@@ -12,6 +12,10 @@ export function Can3D({ className = "" }: { className?: string }) {
       <img
         src={canOriginal}
         alt="Red Bull Original"
+        width={760}
+        height={1710}
+        decoding="async"
+        fetchPriority="high"
         draggable={false}
         className="hero-can"
       />

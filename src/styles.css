@@ -89,9 +89,15 @@
 
 .skew-italic { font-style: italic; transform: skewX(-8deg); display: inline-block; }
 
-/* ── Hero floating can ─────────────────────────────────── */
+/* ── Hero floating can (lightweight: fewer filters, hover only on fine pointers) ── */
 .hero-can-wrapper {
   perspective: 800px;
+}
+
+@media (max-width: 768px) {
+  .hero-can-wrapper {
+    perspective: none;
+  }
 }
 
 .hero-can {
@@ -99,26 +105,42 @@
   max-width: 380px;
   height: auto;
   object-fit: contain;
-  animation: heroFloat 4s ease-in-out infinite;
-  filter:
-    drop-shadow(0 0 40px rgba(237, 27, 36, 0.35))
-    drop-shadow(0 0 80px rgba(0, 30, 92, 0.3))
-    drop-shadow(0 30px 60px rgba(0, 0, 0, 0.5));
-  transition: transform 0.5s cubic-bezier(0.23, 1, 0.32, 1);
-  will-change: transform, filter;
+  animation: heroFloat 5.5s ease-in-out infinite;
+  filter: drop-shadow(0 18px 36px rgba(0, 0, 0, 0.45)) drop-shadow(0 0 28px rgba(237, 27, 36, 0.22));
+  transition: transform 0.45s cubic-bezier(0.23, 1, 0.32, 1);
 }
 
-.hero-can-wrapper:hover .hero-can {
-  transform: rotateY(-8deg) rotateX(4deg) scale(1.04);
-  filter:
-    drop-shadow(0 0 60px rgba(237, 27, 36, 0.5))
-    drop-shadow(0 0 100px rgba(0, 30, 92, 0.45))
-    drop-shadow(0 40px 80px rgba(0, 0, 0, 0.55));
+@media (prefers-reduced-motion: reduce) {
+  .hero-can {
+    animation: none;
+    transform: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-can {
+    animation: heroFloatMobile 5s ease-in-out infinite;
+    filter: drop-shadow(0 14px 24px rgba(0, 0, 0, 0.4));
+  }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .hero-can-wrapper:hover .hero-can {
+    transform: rotateY(-8deg) rotateX(4deg) scale(1.04);
+    filter:
+      drop-shadow(0 22px 44px rgba(0, 0, 0, 0.5))
+      drop-shadow(0 0 36px rgba(237, 27, 36, 0.35));
+  }
 }
 
 @keyframes heroFloat {
-  0%, 100% { transform: translateY(0) rotate(-2deg); }
-  50% { transform: translateY(-18px) rotate(2deg); }
+  0%, 100% { transform: translate3d(0, 0, 0) rotate(-1.5deg); }
+  50% { transform: translate3d(0, -12px, 0) rotate(1.5deg); }
+}
+
+@keyframes heroFloatMobile {
+  0%, 100% { transform: translate3d(0, 0, 0); }
+  50% { transform: translate3d(0, -6px, 0); }
 }
 
 /* Marketplace handoff: freeze float + match card shadow so crossfade reads as one can */
