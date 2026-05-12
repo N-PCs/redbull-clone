@@ -120,3 +120,13 @@
   0%, 100% { transform: translateY(0) rotate(-2deg); }
   50% { transform: translateY(-18px) rotate(2deg); }
 }
+
+/* Marketplace handoff: freeze float + match card shadow so crossfade reads as one can */
+[data-can-docking="1"] .hero-can {
+  animation: none;
+  transform: translate3d(0, 0, 0) rotate(0deg);
+  filter: drop-shadow(0 25px 35px rgba(0, 0, 0, 0.6));
+  transition:
+    filter 0.55s cubic-bezier(0.23, 1, 0.32, 1),
+    transform 0.55s cubic-bezier(0.23, 1, 0.32, 1);
+}

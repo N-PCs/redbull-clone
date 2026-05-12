@@ -21,15 +21,22 @@ export const Route = createFileRoute("/")({
 
 function Index() {
   const canRef = useRef<HTMLDivElement>(null);
+  const driftRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (!canRef.current) return;
-    const el = canRef.current;
+    if (!canRef.current || !driftRef.current) return;
+    const flyLayer = canRef.current;
+    const driftLayer = driftRef.current;
     const target = document.querySelector('[data-can-slot="original"]') as HTMLElement | null;
 
+    const smoothstep = (t: number) => {
+      const x = Math.min(1, Math.max(0, t));
+      return x * x * (3 - 2 * x);
+    };
+
     const ctx = gsap.context(() => {
-      // Phase 1 -> 2: drift horizontally as user scrolls hero/features
-      gsap.to(el, {
+      // Phase 1 -> 2: drift on inner layer only (avoids fighting the marketplace fly tween)
+      gsap.to(driftLayer, {
         scrollTrigger: {
           trigger: "#hero",
           start: "top top",
@@ -39,43 +46,68 @@ function Index() {
         },
         xPercent: -25,
         rotate: -15,
-        scale: 0.85,
+        scale: 0.9,
       });
 
-      // Phase 3: lock into the marketplace card, then morph 3D -> 2D
+      // Phase 3: fly outer layer to card slot while inner returns to neutral (stops "3D wobble" vs static card)
       if (target) {
         const img = target.querySelector("img") as HTMLElement | null;
         if (img) gsap.set(img, { opacity: 0 });
 
-        gsap.to(el, {
+        const dockTl = gsap.timeline({
           scrollTrigger: {
             trigger: "#flavors",
-            start: "top 70%",
+            start: "top 72%",
             endTrigger: "#marketplace",
-            end: "top 30%",
-            scrub: 1,
+            end: "top 28%",
+            scrub: 1.15,
+            invalidateOnRefresh: true,
             onUpdate: (self) => {
-              // Cross-fade: 3D fades out, 2D fades in over the last 40%
               const p = self.progress;
-              const fade = Math.max(0, (p - 0.6) / 0.4);
-              el.style.opacity = String(1 - fade);
+              // Longer eased overlap: card fades in while float can eases out
+              const fadeRaw = Math.max(0, Math.min(1, (p - 0.38) / 0.52));
+              const fade = smoothstep(fadeRaw);
+              flyLayer.style.opacity = String(1 - fade);
               if (img) img.style.opacity = String(fade);
+
+              // Wind down CSS float before the crossfade so the two assets don't "fight"
+              const settle = smoothstep(Math.max(0, Math.min(1, (p - 0.08) / 0.42)));
+              flyLayer.dataset.canDocking = settle > 0.5 ? "1" : "0";
+            },
+            onLeaveBack: () => {
+              flyLayer.dataset.canDocking = "0";
             },
           },
-          x: () => {
-            const r = target.getBoundingClientRect();
-            const c = el.getBoundingClientRect();
-            return r.left + r.width / 2 - (c.left + c.width / 2);
-          },
-          y: () => {
-            const r = target.getBoundingClientRect();
-            const c = el.getBoundingClientRect();
-            return r.top + r.height / 2 - (c.top + c.height / 2);
-          },
-          scale: 0.5,
-          rotate: 0,
-          ease: "power2.inOut",
         });
+
+        dockTl.to(
+          flyLayer,
+          {
+            x: () => {
+              const r = target.getBoundingClientRect();
+              const c = flyLayer.getBoundingClientRect();
+              return r.left + r.width / 2 - (c.left + c.width / 2);
+            },
+            y: () => {
+              const r = target.getBoundingClientRect();
+              const c = flyLayer.getBoundingClientRect();
+              return r.top + r.height / 2 - (c.top + c.height / 2);
+            },
+            scale: 0.48,
+            ease: "none",
+          },
+          0,
+        );
+        dockTl.to(
+          driftLayer,
+          {
+            xPercent: 0,
+            rotate: 0,
+            scale: 1,
+            ease: "power2.inOut",
+          },
+          0,
+        );
       }
     });
 
@@ -89,9 +121,11 @@ function Index() {
       {/* Persistent floating 3D can */}
       <div
         ref={canRef}
-        className="fixed top-0 right-0 w-[55vw] md:w-[45vw] lg:w-[40vw] h-screen z-30 pointer-events-none transition-opacity duration-500"
+        className="fixed top-0 right-0 w-[55vw] md:w-[45vw] lg:w-[40vw] h-screen z-30 pointer-events-none will-change-transform"
       >
-        <Can3D className="w-full h-full" />
+        <div ref={driftRef} className="w-full h-full will-change-transform">
+          <Can3D className="w-full h-full" />
+        </div>
       </div>
 
       {/* HERO */}
