@@ -13,7 +13,7 @@ export const Route = createFileRoute("/")({
   component: Index,
   head: () => ({
     meta: [
-      { title: "Red Bull — Fuel Your Performance | Flavors & Marketplace" },
+      { title: "Red Bull Energy Drink - Gives You Wiings" },
       { name: "description", content: "Cinematic 3D Red Bull experience. Explore six bold flavors and shop the marketplace." },
     ],
   }),
@@ -145,7 +145,7 @@ function Index() {
       </div>
 
       {/* HERO */}
-      <section id="hero" className="relative min-h-screen bg-grid pt-20 overflow-hidden">
+      <section id="hero" className="relative min-h-screen bg-grid pt-4 overflow-hidden">
         <div className="max-w-7xl mx-auto px-6 pt-16 md:pt-24 relative">
           <div className="max-w-2xl relative z-10">
             <div className="flex items-center gap-3 mb-6">
@@ -198,6 +198,7 @@ function Index() {
           <div className="grid md:grid-cols-12 gap-10 items-end mb-20">
             <div className="md:col-span-7">
               <span className="text-xs uppercase tracking-[0.4em] text-[var(--rb-red)]">The Formula</span>
+              <p></p>
               <h2 className="display text-5xl md:text-7xl mt-4 skew-italic leading-[0.9]">
                 ICE-COLD<br />ENGINEERING.
               </h2>

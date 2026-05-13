@@ -38,7 +38,7 @@ export function FlavorCard({ flavor, hideCan = false }: { flavor: Flavor; hideCa
             src={flavor.image}
             alt={`Red Bull ${flavor.title}`}
             loading="lazy"
-            className={`h-full max-h-[280px] w-auto object-contain drop-shadow-[0_25px_35px_rgba(0,0,0,0.6)] transition-transform duration-500 group-hover:scale-105 group-hover:-rotate-3${flavor.hasWhiteBg ? " mix-blend-multiply" : ""}`}
+            className={`h-full max-h-[280px] w-auto object-contain drop-shadow-[0_25px_35px_rgba(0,0,0,0.6)] transition-transform duration-500 group-hover:scale-125 group-hover:-rotate-3${flavor.hasWhiteBg ? " mix-blend-multiply" : ""}`}
           />
         )}
       </div>
