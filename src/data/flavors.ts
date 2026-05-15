@@ -18,7 +18,6 @@ export type Flavor = {
   description: string;
   bg: string;
   accent: string;
-  price: number;
   image: string;
   /** true when the source PNG has a white (non-transparent) background */
   hasWhiteBg?: boolean;
@@ -32,7 +31,6 @@ export const flavors: Flavor[] = [
     description: "The classic energy formula trusted by athletes and dreamers worldwide.",
     bg: "linear-gradient(135deg, #001E5C 0%, #000B29 100%)",
     accent: "#FFCC00",
-    price: 2.99,
     image: original,
   },
   {
@@ -42,7 +40,6 @@ export const flavors: Flavor[] = [
     description: "Sweet, juicy watermelon — wings with a burst of summer.",
     bg: "linear-gradient(135deg, #ED1B24 0%, #7A0D12 100%)",
     accent: "#FFCC00",
-    price: 3.29,
     image: watermelon,
     hasWhiteBg: true,
   },
@@ -53,7 +50,6 @@ export const flavors: Flavor[] = [
     description: "Exotic dragon fruit. Bold, electric, unforgettable.",
     bg: "linear-gradient(135deg, #E6007E 0%, #7A0040 100%)",
     accent: "#FFCC00",
-    price: 3.29,
     image: dragonfruit,
   },
   {
@@ -63,7 +59,6 @@ export const flavors: Flavor[] = [
     description: "All the energy you want, none of the sugar you don't.",
     bg: "linear-gradient(135deg, #2B6CB0 0%, #001E5C 100%)",
     accent: "#FFCC00",
-    price: 2.99,
     image: sugarfree,
   },
   {
@@ -73,7 +68,6 @@ export const flavors: Flavor[] = [
     description: "A taste of tropical fruits. Sunshine in every sip.",
     bg: "linear-gradient(135deg, #FFCC00 0%, #B8860B 100%)",
     accent: "#000B29",
-    price: 3.29,
     image: tropical,
     hasWhiteBg: true,
   },
@@ -84,7 +78,6 @@ export const flavors: Flavor[] = [
     description: "Wild blueberries meet electric energy.",
     bg: "linear-gradient(135deg, #1E40AF 0%, #0B1A4A 100%)",
     accent: "#FFCC00",
-    price: 3.29,
     image: blueberry,
   },
   {
@@ -94,7 +87,6 @@ export const flavors: Flavor[] = [
     description: "Velvety white peach with a sharp pink kick.",
     bg: "linear-gradient(135deg, #E6007E 0%, #6B0038 100%)",
     accent: "#FFCC00",
-    price: 3.29,
     image: pink,
     hasWhiteBg: true,
   },
@@ -105,7 +97,6 @@ export const flavors: Flavor[] = [
     description: "Creamy coconut meets bright wild berries.",
     bg: "linear-gradient(135deg, #E5E7EB 0%, #6B7280 100%)",
     accent: "#ED1B24",
-    price: 3.29,
     image: coconut,
   },
   {
@@ -115,7 +106,6 @@ export const flavors: Flavor[] = [
     description: "Juicy peach and ripe nectarine. Sun-soaked energy.",
     bg: "linear-gradient(135deg, #FB923C 0%, #9A3412 100%)",
     accent: "#FFCC00",
-    price: 3.29,
     image: peach,
   },
   {
@@ -125,7 +115,6 @@ export const flavors: Flavor[] = [
     description: "Tropical curuba and floral elderflower — cool and crisp.",
     bg: "linear-gradient(135deg, #84CC16 0%, #365314 100%)",
     accent: "#FFCC00",
-    price: 3.29,
     image: curuba,
   },
   {
@@ -135,7 +124,6 @@ export const flavors: Flavor[] = [
     description: "Soft apricot meets ripe strawberry. Pure summer.",
     bg: "linear-gradient(135deg, #FB7185 0%, #881337 100%)",
     accent: "#FFCC00",
-    price: 3.29,
     image: apricot,
   },
   {
@@ -145,7 +133,6 @@ export const flavors: Flavor[] = [
     description: "Wild juneberries with a deep, electric finish.",
     bg: "linear-gradient(135deg, #7C3AED 0%, #2E1065 100%)",
     accent: "#FFCC00",
-    price: 3.29,
     image: juneberry,
   },
 ];

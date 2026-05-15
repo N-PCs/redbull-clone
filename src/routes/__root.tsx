@@ -83,7 +83,9 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "twitter:site", content: "@redbull" },
     ],
     links: [
-      { rel: "icon", type: "image/png", href: "/redbull.png" },
+      { rel: "icon", type: "image/png", href: "/redbull.png?v=1" },
+      { rel: "shortcut icon", href: "/redbull.png?v=1" },
+      { rel: "apple-touch-icon", href: "/redbull.png?v=1" },
       { rel: "stylesheet", href: appCss },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
@@ -115,11 +117,16 @@ function RootShell({ children }: { children: React.ReactNode }) {
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
+  const router = useRouter();
+  const state = router.state;
+  const currentPath = state.location.pathname;
 
   return (
     <QueryClientProvider client={queryClient}>
       <ScrollProgressBar />
-      <Outlet />
+      <div key={currentPath} className="page-transition-wrapper">
+        <Outlet />
+      </div>
     </QueryClientProvider>
   );
 }

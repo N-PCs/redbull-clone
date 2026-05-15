@@ -137,7 +137,7 @@ function Index() {
       {/* Persistent floating 3D can */}
       <div
         ref={canRef}
-        className="fixed top-0 right-0 w-[55vw] md:w-[45vw] lg:w-[40vw] h-screen z-30 pointer-events-none max-md:w-[50vw] isolate"
+        className="fixed top-0 -right-12 sm:right-0 w-[80vw] sm:w-[55vw] md:w-[45vw] lg:w-[40vw] h-screen z-0 md:z-30 pointer-events-none isolate opacity-50 md:opacity-100"
       >
         <div ref={driftRef} className="w-full h-full">
           <Can3D className="w-full h-full" />
@@ -145,21 +145,21 @@ function Index() {
       </div>
 
       {/* HERO */}
-      <section id="hero" className="relative min-h-screen bg-grid pt-4 overflow-hidden">
-        <div className="max-w-7xl mx-auto px-6 pt-16 md:pt-24 relative">
-          <div className="max-w-2xl relative z-10">
+      <section id="hero" className="relative min-h-[80vh] md:min-h-screen bg-grid pt-2 overflow-hidden">
+        <div className="max-w-7xl mx-auto px-6 pt-32 md:pt-24 relative">
+          <div className="max-w-2xl relative z-50 md:z-10">
             <div className="flex items-center gap-3 mb-6">
               <span className="h-px w-12 bg-[var(--rb-yellow)]" />
               <span className="text-xs uppercase tracking-[0.4em] text-[var(--rb-yellow)]">Series 2026 / Performance Drop</span>
             </div>
-            <h1 className="display text-[14vw] md:text-[9vw] leading-[0.85] skew-italic">
+            <h1 className="display text-[11vw] sm:text-[14vw] md:text-[9vw] leading-[0.85] skew-italic">
               FUEL
               <br />
               <span className="text-[var(--rb-red)]">YOUR</span>
               <br />
               <span className="text-stroke">PERFORMANCE.</span>
             </h1>
-            <p className="mt-8 text-base md:text-lg text-white/70 max-w-lg leading-relaxed">
+            <p className="mt-6 text-sm md:text-lg text-white/70 max-w-lg leading-relaxed">
               Multiple flavors. One mission. Engineered to vitalize body and mind for athletes,
               creators, and anyone chasing the impossible.
             </p>
@@ -170,7 +170,14 @@ function Index() {
               >
                 Explore Flavors
               </a>
+              <a
+                href="/ingredients"
+                className="px-7 py-4 border border-white/30 bg-[var(--rb-red)] text-white text-sm font-bold uppercase tracking-[0.2em] hover:border-[var(--rb-yellow)] hover:text-[var(--rb-yellow)] transition"
+              >
+                Ingredients
+              </a>
             </div>
+            
 
             <div className="mt-20 grid grid-cols-3 gap-8 max-w-md">
               {[

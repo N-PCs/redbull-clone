@@ -3,7 +3,7 @@
 type ArrowDef = { d: string; color: string; id: string };
 
 const arrows: ArrowDef[] = [
-  { id: "caffeine", color: "#ED1B24", d: "M 541 310 L 435 310 L 230 105 L 210 105" },
+  { id: "caffeine", color: "#ED1B24", d: "M 541 310 L 440 310 L 230 105 L 210 90" },
   { id: "taurine", color: "#E6B800", d: "M 520 355 L 195 355" },
   { id: "water", color: "#4A9FD4", d: "M 552 310 L 665 310 L 870 105 L 890 105" },
   { id: "b-vitamins", color: "#DA1884", d: "M 580 355 L 905 355" },

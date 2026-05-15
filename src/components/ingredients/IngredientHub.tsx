@@ -53,9 +53,9 @@ function CalloutIcon({ id }: { id: string }) {
     case "b-vitamins":
       return (
         <svg className={base} viewBox="0 0 40 40" fill="none" aria-hidden>
-          <circle cx="12" cy="20" r="4" stroke="#FFCC00" strokeWidth="1.2" />
-          <circle cx="28" cy="14" r="4" stroke="#00A859" strokeWidth="1.2" />
-          <rect x="16" y="24" width="12" height="6" rx="3" fill="#FFCC00" fillOpacity="0.4" />
+          <circle cx="12" cy="20" r="4" stroke="#DA1884" strokeWidth="1.2" />
+          <circle cx="28" cy="14" r="4" stroke="#DA1884" strokeWidth="1.2" />
+          <rect x="16" y="24" width="12" height="6" rx="3" fill="#DA1884" fillOpacity="0.4" />
         </svg>
       );
     case "sugars":
@@ -73,7 +73,7 @@ function CalloutIcon({ id }: { id: string }) {
 
 export function IngredientHub() {
   return (
-    <section id="hub" className="relative pt-24 pb-12 ingredients-circuit-bg font-sans">
+    <section id="hub" className="relative pt-28 md:pt-12 pb-12 ingredients-circuit-bg font-sans">
       <div className="max-w-[1140px] mx-auto px-4 sm:px-6">
         {/* Diagram: grid-aligned boxes + curved arrows + center can */}
         <div className="ingredient-diagram-stage">

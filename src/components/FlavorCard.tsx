@@ -20,12 +20,6 @@ export function FlavorCard({ flavor, hideCan = false }: { flavor: Flavor; hideCa
             {flavor.title.toUpperCase()}
           </h3>
         </div>
-        <span
-          className="text-[11px] font-bold px-2 py-1"
-          style={{ background: flavor.accent, color: flavor.accent === "#FFCC00" ? "#000B29" : "#fff" }}
-        >
-          ${flavor.price.toFixed(2)}
-        </span>
       </div>
 
       {/* Can image area */}

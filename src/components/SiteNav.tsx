@@ -11,24 +11,24 @@ import {
 } from "@/components/ui/dropdown-menu";
 
 const navLinks = [
-  { href: "/#hero", label: "Performance", hasDropdown: true },
-  { href: "/#flavors", label: "Flavors" },
+  { href: "/#hero", label: "Performance"},
+  { href: "/#flavors", label: "Flavors", hasDropdown: true },
   { to: "/ingredients" as const, label: "Ingredients" },
 ] as const;
 
 export function SiteNav() {
   return (
-    <header className="fixed top-6 left-0 right-0 z-50 flex justify-center px-6 pointer-events-none">
+    <header className="fixed top-6 left-0 right-0 z-[60] flex justify-center px-6 pointer-events-none">
       <div className="max-w-fit pointer-events-auto flex items-center gap-2 px-6 h-14 rounded-full bg-[var(--rb-blue-deep)]/70 backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_0_rgba(0,0,0,0.4)] transition-all duration-300">
         <Link to="/" className="flex items-center shrink-0 py-1 mr-4">
           <img src="redbull-icon.svg" className="h-8 w-auto" alt="Red Bull" />
         </Link>
 
-        <nav className="hidden md:flex items-center gap-8 text-[11px] font-bold uppercase tracking-[0.2em]">
+        <nav className="hidden md:flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.2em]">
           {navLinks.map((link) => {
             const { label } = link;
             const className =
-              "text-white/80 hover:text-white transition-colors flex items-center gap-1.5 group";
+              "text-white/80 hover:text-white flex items-center gap-1.5 group nav-tap-animate nav-bubble-link";
 
             if ("to" in link) {
               return (
@@ -62,14 +62,14 @@ export function SiteNav() {
               <DropdownMenuContent
                 align="center"
                 sideOffset={16}
-                className="w-[calc(100vw-3rem)] max-w-sm border-white/10 bg-[#000B29]/95 text-white backdrop-blur-xl rounded-2xl p-2"
+                className="w-full max-w-sm border-white/10 bg-[#000B29]/95 text-white backdrop-blur-xl rounded-2xl p-2"
               >
                 {navLinks.map((link) =>
                   "to" in link ? (
                     <DropdownMenuItem
                       key={link.to}
                       asChild
-                      className="rounded-xl cursor-pointer uppercase tracking-[0.2em] text-[10px] font-bold text-white/85 focus:bg-white/10 focus:text-[var(--rb-yellow)] py-3 px-6"
+                      className="rounded-xl cursor-pointer uppercase tracking-[0.2em] text-[10px] font-bold text-white/85 focus:bg-white/10 focus:text-[var(--rb-yellow)] py-3 px-6 nav-tap-animate"
                     >
                       <Link to={link.to}>{link.label}</Link>
                     </DropdownMenuItem>
@@ -77,7 +77,7 @@ export function SiteNav() {
                     <DropdownMenuItem
                       key={link.href}
                       asChild
-                      className="rounded-xl cursor-pointer uppercase tracking-[0.2em] text-[10px] font-bold text-white/85 focus:bg-white/10 focus:text-[var(--rb-yellow)] py-3 px-6"
+                      className="rounded-xl cursor-pointer uppercase tracking-[0.2em] text-[10px] font-bold text-white/85 focus:bg-white/10 focus:text-[var(--rb-yellow)] py-3 px-6 nav-tap-animate"
                     >
                       <a href={link.href}>{link.label}</a>
                     </DropdownMenuItem>
