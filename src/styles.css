@@ -445,6 +445,17 @@ html.ingredients-route h3,
   color: #ffffff !important;
 }
 
+/* Class to be added via JS for mobile tap feedback */
+.bubble-tapped {
+  animation: bubble-pulse-stay 1s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes bubble-pulse-stay {
+  0% { background-color: rgba(255, 255, 255, 0.2); }
+  80% { background-color: rgba(255, 255, 255, 0.2); }
+  100% { background-color: transparent; }
+}
+
 /* Navbar Tap Animation */
 .nav-tap-animate {
   transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);

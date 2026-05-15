@@ -40,6 +40,14 @@ export function SiteNav() {
     return () => window.removeEventListener("resize", updateDimensions);
   }, []);
 
+  const handleTap = (e: React.MouseEvent | React.TouchEvent) => {
+    const target = e.currentTarget as HTMLElement;
+    target.classList.add("bubble-tapped");
+    setTimeout(() => {
+      target.classList.remove("bubble-tapped");
+    }, 1000);
+  };
+
   return (
     <header className="fixed top-6 left-0 right-0 z-[60] flex justify-center px-6 pointer-events-none">
       <div 
@@ -58,14 +66,14 @@ export function SiteNav() {
 
             if ("to" in link) {
               return (
-                <Link key={link.to} to={link.to} className={className}>
+                <Link key={link.to} to={link.to} className={className} onClick={handleTap}>
                   {label}
                 </Link>
               );
             }
 
             return (
-              <a key={link.href} href={link.href} className={className}>
+              <a key={link.href} href={link.href} className={className} onClick={handleTap}>
                 {label}
                 {"hasDropdown" in link && link.hasDropdown && (
                   <ChevronDown className="h-3 w-3 opacity-40 group-hover:opacity-100 transition-opacity" />
@@ -99,6 +107,7 @@ export function SiteNav() {
                       key={link.to}
                       asChild
                       className="rounded-xl cursor-pointer uppercase tracking-[0.2em] text-[10px] font-bold text-white/85 focus:bg-white/10 focus:text-[var(--rb-yellow)] py-3 px-6 nav-tap-animate nav-bubble-link"
+                      onClick={handleTap}
                     >
                       <Link to={link.to}>{link.label}</Link>
                     </DropdownMenuItem>
@@ -107,6 +116,7 @@ export function SiteNav() {
                       key={link.href}
                       asChild
                       className="rounded-xl cursor-pointer uppercase tracking-[0.2em] text-[10px] font-bold text-white/85 focus:bg-white/10 focus:text-[var(--rb-yellow)] py-3 px-6 nav-tap-animate nav-bubble-link"
+                      onClick={handleTap}
                     >
                       <a href={link.href}>{link.label}</a>
                     </DropdownMenuItem>

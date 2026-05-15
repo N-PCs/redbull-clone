@@ -40,6 +40,14 @@ export function IngredientsNav() {
     return () => window.removeEventListener("resize", updateDimensions);
   }, []);
 
+  const handleTap = (e: React.MouseEvent | React.TouchEvent) => {
+    const target = e.currentTarget as HTMLElement;
+    target.classList.add("bubble-tapped");
+    setTimeout(() => {
+      target.classList.remove("bubble-tapped");
+    }, 1000);
+  };
+
   return (
     <header className="fixed top-6 left-0 right-0 z-[60] flex justify-center px-6 pointer-events-none">
       <div 
@@ -85,7 +93,7 @@ export function IngredientsNav() {
                 className="max-w-sm border-white/10 bg-[#000B29]/95 text-white backdrop-blur-xl rounded-2xl p-2"
               >
                 {navLinks.map(({ href, label }) => (
-                  <DropdownMenuItem key={href} asChild className="rounded-xl cursor-pointer uppercase tracking-[0.2em] text-[10px] font-bold text-white/85 focus:bg-white/10 focus:text-[var(--rb-yellow)] py-3 px-6 nav-tap-animate nav-bubble-link">
+                  <DropdownMenuItem key={href} asChild className="rounded-xl cursor-pointer uppercase tracking-[0.2em] text-[10px] font-bold text-white/85 focus:bg-white/10 focus:text-[var(--rb-yellow)] py-3 px-6 nav-tap-animate nav-bubble-link" onClick={handleTap}>
                     <a href={href}>{label}</a>
                   </DropdownMenuItem>
                 ))}
