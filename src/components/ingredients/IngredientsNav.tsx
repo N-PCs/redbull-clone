@@ -1,0 +1,70 @@
+"use client";
+
+import { Link } from "@tanstack/react-router";
+import { Menu } from "lucide-react";
+
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+
+const navLinks = [
+  { href: "#hub", label: "Overview" },
+] as const;
+
+export function IngredientsNav() {
+  return (
+    <header className="fixed top-6 left-0 right-0 z-50 flex justify-center px-6 pointer-events-none">
+      <div className="max-w-fit pointer-events-auto flex items-center gap-2 px-6 h-14 rounded-full bg-[var(--rb-blue-deep)]/70 backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_0_rgba(0,0,0,0.4)] transition-all duration-300">
+        <Link to="/" className="flex items-center shrink-0 py-1 mr-4">
+          <img src="/redbull-icon.svg" className="h-8 w-auto" alt="Red Bull" />
+        </Link>
+
+        <nav className="hidden md:flex items-center gap-8 text-[11px] font-bold uppercase tracking-[0.2em]">
+          {navLinks.map(({ href, label }) => (
+            <a key={href} href={href} className="text-white/80 hover:text-white transition-colors flex items-center gap-1.5 group">
+              {label}
+            </a>
+          ))}
+        </nav>
+
+        <div className="flex items-center ml-2">
+          <Link
+            to="/"
+            className="hidden sm:inline-flex text-[11px] font-bold uppercase tracking-[0.2em] text-white/80 hover:text-[var(--rb-yellow)] transition ml-4"
+          >
+            Home
+          </Link>
+
+          <div className="md:hidden ml-4">
+            <DropdownMenu>
+              <DropdownMenuTrigger
+                type="button"
+                aria-label="Open menu"
+                className="inline-flex h-9 w-9 items-center justify-center rounded-full text-white/85 outline-none border border-white/15 bg-white/5 hover:bg-white/10 hover:text-[var(--rb-yellow)] transition"
+              >
+                <Menu className="h-4 w-4" strokeWidth={2.5} />
+              </DropdownMenuTrigger>
+              <DropdownMenuContent
+                align="center"
+                sideOffset={16}
+                className="w-[calc(100vw-3rem)] max-w-sm border-white/10 bg-[#000B29]/95 text-white backdrop-blur-xl rounded-2xl p-2"
+              >
+                {navLinks.map(({ href, label }) => (
+                  <DropdownMenuItem key={href} asChild className="rounded-xl cursor-pointer uppercase tracking-[0.2em] text-[10px] font-bold text-white/85 focus:bg-white/10 focus:text-[var(--rb-yellow)] py-3 px-6">
+                    <a href={href}>{label}</a>
+                  </DropdownMenuItem>
+                ))}
+                <DropdownMenuItem asChild className="rounded-xl cursor-pointer uppercase tracking-[0.2em] text-[10px] font-bold text-white/85 focus:bg-white/10 focus:text-[var(--rb-yellow)] py-3 px-6 mt-1 border-t border-white/10">
+                  <Link to="/">Home</Link>
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+          </div>
+        </div>
+      </div>
+    </header>
+  );
+}

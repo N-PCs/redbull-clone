@@ -160,3 +160,246 @@
     filter 0.55s cubic-bezier(0.23, 1, 0.32, 1),
     transform 0.55s cubic-bezier(0.23, 1, 0.32, 1);
 }
+
+/* ── Ingredients page (distinct light experience) ── */
+.ingredients-page {
+  background: #f8fafc;
+  color: #001e5c;
+}
+
+html.ingredients-route,
+html.ingredients-route body {
+  background: #f8fafc;
+  color: #001e5c;
+}
+
+.ingredients-circuit-bg {
+  background-color: #f8fafc;
+  background-image:
+    radial-gradient(ellipse at 50% 0%, rgba(74, 159, 212, 0.12), transparent 55%),
+    url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg stroke='%23001E5C' stroke-opacity='0.06' stroke-width='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+
+.ingredients-can .hero-can {
+  width: 100%;
+  max-width: none;
+  filter: drop-shadow(0 20px 40px rgba(0, 30, 92, 0.2)) drop-shadow(0 0 24px rgba(237, 27, 36, 0.15));
+}
+
+.ingredients-can .hero-can-wrapper {
+  perspective: 900px;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .ingredients-can .hero-can-wrapper:hover .hero-can {
+    filter: drop-shadow(0 24px 48px rgba(0, 30, 92, 0.25)) drop-shadow(0 0 32px rgba(237, 27, 36, 0.2));
+  }
+}
+
+/* Ingredients typography — Inter only (no Anton / display skew) */
+html.ingredients-route h1,
+html.ingredients-route h2,
+html.ingredients-route h3,
+.ingredients-page h1,
+.ingredients-page h2,
+.ingredients-page h3 {
+  font-family: var(--font-sans);
+  font-style: normal;
+  transform: none;
+  letter-spacing: -0.02em;
+}
+
+.ingredient-eyebrow {
+  font-family: var(--font-sans);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.28em;
+  color: #ed1b24;
+  margin-bottom: 0.75rem;
+}
+
+.ingredient-title {
+  font-family: var(--font-sans);
+  font-size: clamp(1.75rem, 4vw, 2.75rem);
+  font-weight: 700;
+  line-height: 1.15;
+  color: #001e5c;
+}
+
+.ingredient-lead {
+  font-family: var(--font-sans);
+  margin-top: 1.25rem;
+  font-size: 1.0625rem;
+  line-height: 1.65;
+  color: rgba(0, 30, 92, 0.72);
+}
+
+.ingredient-section-title {
+  font-family: var(--font-sans);
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 700;
+  color: #001e5c;
+  margin-bottom: 1.5rem;
+}
+
+.ingredient-stat-value {
+  font-family: var(--font-sans);
+  font-size: 1.875rem;
+  font-weight: 700;
+  color: #ed1b24;
+  margin-top: 1rem;
+}
+
+/* Diagram grid — boxes align to arrow endpoints */
+.ingredient-diagram-stage {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(200px, 280px) minmax(0, 1fr);
+  grid-template-rows: minmax(140px, 1fr) minmax(140px, 1fr) minmax(140px, 1fr);
+  gap: 0.75rem 1rem;
+  min-height: 620px;
+  max-height: 720px;
+  align-items: center;
+}
+
+@media (min-width: 768px) {
+  .ingredient-diagram-stage {
+    min-height: 680px;
+    gap: 0.5rem 1.25rem;
+  }
+}
+
+.ingredient-slot-can {
+  grid-column: 2;
+  grid-row: 1 / -1;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-self: center;
+  justify-self: center;
+}
+
+.ingredient-slot-caffeine {
+  grid-column: 1;
+  grid-row: 1;
+  justify-self: end;
+  align-self: start;
+}
+
+.ingredient-slot-taurine {
+  grid-column: 1;
+  grid-row: 2;
+  justify-self: end;
+  align-self: center;
+}
+
+.ingredient-slot-water {
+  grid-column: 3;
+  grid-row: 1;
+  justify-self: start;
+  align-self: start;
+}
+
+.ingredient-slot-bvitamins {
+  grid-column: 3;
+  grid-row: 2;
+  justify-self: start;
+  align-self: center;
+}
+
+.ingredient-slot-sugars {
+  grid-column: 3;
+  grid-row: 3;
+  justify-self: start;
+  align-self: end;
+}
+
+.ingredient-callout {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  gap: 0.75rem;
+  width: 100%;
+  max-width: 268px;
+  padding: 1rem 1.125rem;
+  border-radius: 1rem;
+  border: 1px solid rgba(0, 30, 92, 0.1);
+  border-left-width: 4px;
+  background: rgba(255, 255, 255, 0.97);
+  box-shadow: 0 8px 32px rgba(0, 30, 92, 0.08);
+  transition: box-shadow 0.2s, border-color 0.2s;
+}
+
+.ingredient-callout:hover {
+  box-shadow: 0 12px 40px rgba(237, 27, 36, 0.1);
+}
+
+.ingredient-callout--caffeine { border-left-color: #ed1b24; }
+.ingredient-callout--taurine { border-left-color: #e6b800; }
+.ingredient-callout--water { border-left-color: #4a9fd4; }
+.ingredient-callout--bvits { border-left-color: #e6b800; }
+.ingredient-callout--sugars { border-left-color: #00a859; }
+
+.ingredient-callout-title {
+  font-family: var(--font-sans);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #001e5c;
+}
+
+.group:hover .ingredient-callout-title {
+  color: #ed1b24;
+}
+
+.ingredient-callout-extra {
+  font-size: 0.6875rem;
+  color: rgba(0, 30, 92, 0.55);
+  margin-top: 0.125rem;
+}
+
+.ingredient-callout-benefit {
+  font-size: 0.75rem;
+  line-height: 1.5;
+  color: rgba(0, 30, 92, 0.72);
+  margin-top: 0.375rem;
+}
+
+/* Mobile: stack diagram, hide arrows */
+@media (max-width: 767px) {
+  .ingredient-diagram-stage {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    min-height: unset;
+    max-height: unset;
+    gap: 0.75rem;
+  }
+
+  .ingredient-slot-can {
+    grid-column: 1;
+    grid-row: 1;
+    min-height: 280px;
+  }
+
+  .ingredient-slot-caffeine,
+  .ingredient-slot-taurine,
+  .ingredient-slot-water,
+  .ingredient-slot-bvitamins,
+  .ingredient-slot-sugars {
+    grid-column: 1;
+    grid-row: auto;
+    justify-self: stretch;
+    align-self: stretch;
+  }
+
+  .ingredient-callout {
+    max-width: none;
+  }
+}
+
+.ingredient-arrow-path {
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.12));
+}
