@@ -4,6 +4,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { IngredientsNav } from "@/components/ingredients/IngredientsNav";
 import { IngredientHub } from "@/components/ingredients/IngredientHub";
 import { ComparisonChart } from "@/components/ingredients/ComparisonChart";
+import { FlavorSlider } from "@/components/ingredients/FlavorSlider";
 import { ingredientSections } from "@/data/ingredients";
 
 export const Route = createFileRoute("/ingredients")({
@@ -64,6 +65,8 @@ function IngredientsPage() {
             </article>
           ))}
         </div>
+
+        <FlavorSlider />
       </main>
 
       <footer className="border-t border-[#001E5C]/10 py-10 bg-[#F5F7FA]">

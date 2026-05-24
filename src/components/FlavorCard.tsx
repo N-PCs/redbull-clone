@@ -9,11 +9,11 @@ export function FlavorCard({ flavor, hideCan = false }: { flavor: Flavor; hideCa
     >
       {/* Diagonal accent stripe */}
       <div
-        className="absolute -inset-x-10 top-1/3 h-[60%] opacity-15 -rotate-12"
+        className="absolute -inset-x-10 top-1/3 h-[60%] opacity-15 -rotate-12"  
         style={{ background: "linear-gradient(180deg, rgba(255,255,255,0.5), transparent)" }}
       />
 
-      <div className="relative z-10 p-5 flex items-start justify-between">
+      <div className="relative z-10 p-5 flex items-start justify-between">      
         <div>
           <div className="text-[10px] uppercase tracking-[0.25em] text-white/70">Energy Drink</div>
           <h3 className="display text-2xl md:text-3xl text-white skew-italic leading-none mt-1">
@@ -25,14 +25,14 @@ export function FlavorCard({ flavor, hideCan = false }: { flavor: Flavor; hideCa
       {/* Can image area */}
       <div
         data-can-slot={flavor.id}
-        className="relative z-10 flex-1 flex items-center justify-center px-6"
+        className="relative z-10 flex-1 flex items-center justify-center px-6"  
       >
         {!hideCan && (
           <img
             src={flavor.image}
             alt={`Red Bull ${flavor.title}`}
             loading="lazy"
-            className={`h-full max-h-[280px] w-auto object-contain drop-shadow-[0_25px_35px_rgba(0,0,0,0.6)] transition-transform duration-500 group-hover:scale-125 group-hover:-rotate-3${flavor.hasWhiteBg ? " mix-blend-multiply" : ""}`}
+            className="h-full max-h-[280px] w-auto object-contain drop-shadow-[0_25px_35px_rgba(0,0,0,0.6)] transition-transform duration-500 group-hover:scale-105 group-hover:-rotate-3"
           />
         )}
       </div>
