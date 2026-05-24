@@ -49,7 +49,7 @@ function IngredientsPage() {
                 ))}
               </div>
 
-              {section.didYouKnow && (
+              {section.didYouKnow && !section.comparison && (
                 <aside className="mt-8 p-6 rounded-2xl bg-[#001E5C]/5 border-l-4 border-[#FFCC00]">
                   <h3 className="text-sm font-bold uppercase tracking-wider text-[#ED1B24] mb-2">
                     {section.didYouKnow.title}
@@ -58,7 +58,9 @@ function IngredientsPage() {
                 </aside>
               )}
 
-              {section.comparison && <ComparisonChart {...section.comparison} />}
+              {section.comparison && (
+                <ComparisonChart {...section.comparison} didYouKnow={section.didYouKnow} />
+              )}
             </article>
           ))}
         </div>

@@ -72,7 +72,7 @@ export const ingredientSections: IngredientSection[] = [
     ],
     didYouKnow: {
       title: "Did you know?",
-      body: "The 75 mg of caffeine contained in one 250-ml can of Red Bull Energy Drink is about the same amount as in a cup of coffee.",
+      body: "One of caffeine’s primary actions in the human body is its stimulating effect on cognitive functions.Each 250 ml can of Red Bull Energy Drink contains 75 mg of caffeine. Caffeine helps to improve concentration and increase alertness.",
     },
     comparison: {
       centerLabel: "Red Bull Energy Drink",

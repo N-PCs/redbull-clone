@@ -106,7 +106,7 @@ export function IngredientHub() {
           <p className="ingredient-eyebrow">Explore the high quality ingredients</p>
           <h1 className="ingredient-title">Red Bull Energy Drink Ingredients</h1>
           <p className="ingredient-lead">
-            The formula that gives you wiiings: kickstart your day with Red Bull Energy Drink&apos;s
+            The formula that gives you wiiings! : kickstart your day with Red Bull Energy Drink&apos;s
             unique formula made up of high quality ingredients
           </p>
         </div>
