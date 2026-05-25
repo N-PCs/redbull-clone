@@ -10,7 +10,7 @@ export function Can3D({ className = "" }: { className?: string }) {
   return (
     <div className={`${className} flex items-center justify-center hero-can-wrapper`}>
       <img
-        src={canOriginal}
+        src="./assets/can-original.png"
         alt="Red Bull Original"
         width={760}
         height={1710}
