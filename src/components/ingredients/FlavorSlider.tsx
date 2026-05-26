@@ -287,7 +287,8 @@ More flavors
                   left: "50%",
                   top: "50%",
                   transform: "translate(-50%, -50%)",
-                  width: "clamp(180px, 45vw, 340px)",
+                  height: "clamp(250px, 50vh, 400px)",
+                  width: "auto",
                   zIndex: 0,
                   opacity: 0,
                   pointerEvents: "none",
@@ -296,7 +297,7 @@ More flavors
                 <img
                   src={flavor.image}
                   alt={flavor.title}
-                  className="w-full h-auto object-contain drop-shadow-[0_30px_40px_rgba(0,0,0,0.35)]"
+                  className="h-full w-auto max-w-none object-contain drop-shadow-[0_30px_40px_rgba(0,0,0,0.35)]"
                 />
               </div>
             ))}

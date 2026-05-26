@@ -18,7 +18,7 @@ export const flavors: Flavor[] = [
     description: "The classic energy formula trusted by athletes and dreamers worldwide.",
     bg: "linear-gradient(135deg, #001E5C 0%, #000B29 100%)",
     accent: "#FFCC00",
-    image: "/assets/can-original.png",
+    image: "/assets/can-original1.png",
   },
   {
     id: "watermelon",
