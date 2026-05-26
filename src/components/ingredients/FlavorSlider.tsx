@@ -24,13 +24,13 @@ const sampleFlavors: Flavor[] = [
   {
     id: "original",
     title: "Original",
-    bg: "linear-gradient(135deg, #1A0B2E 0%, #470022 100%)",
+    bg: "linear-gradient(135deg, #022140 0%, #003366 100%)",
     image: "./assets/can-original.png", // Placeholder
   },
   {
     id: "sugarfree",
     title: "Sugar Free",
-    bg: "linear-gradient(135deg, #022140 0%, #003366 100%)",
+    bg: "linear-gradient(135deg, #4abaffff 0%, #0048ffff 100%)",
     image: "./assets/can-sugarfree.png", // Placeholder
   },
   {
@@ -67,20 +67,20 @@ const getDisplayTitle = (flavor: Flavor): string => {
 export function FlavorSlider() {
   const [activeIndex, setActiveIndex] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
-  
+
   const containerRef = useRef<HTMLDivElement>(null);
   const leftBgRef = useRef<HTMLDivElement>(null);
   const textContainerRef = useRef<HTMLDivElement>(null);
   const cansContainerRef = useRef<HTMLDivElement>(null);
   const canRefs = useRef<(HTMLDivElement | null)[]>([]);
-  
+
   const activeFlavor = filteredFlavors[activeIndex];
   const totalFlavors = filteredFlavors.length;
 
   // Helper to get position/transform for a can based on its distance from active
   const getCanTarget = (flavorIndex: number) => {
     const distance = (flavorIndex - activeIndex + totalFlavors) % totalFlavors;
-    
+
     // Active can (center)
     if (distance === 0) {
       return {
@@ -91,7 +91,7 @@ export function FlavorSlider() {
         zIndex: 50,
       };
     }
-    
+
     // Next can (right side, distance = 1)
     if (distance === 1) {
       return {
@@ -102,7 +102,7 @@ export function FlavorSlider() {
         zIndex: 40,
       };
     }
-    
+
     // Previous can (left side, distance = totalFlavors - 1)
     if (distance === totalFlavors - 1) {
       return {
@@ -113,7 +113,7 @@ export function FlavorSlider() {
         zIndex: 40,
       };
     }
-    
+
     // Hidden cans (further away)
     return {
       left: distance > totalFlavors / 2 ? "-15%" : "115%",
@@ -128,13 +128,13 @@ export function FlavorSlider() {
   const animateCans = () => {
     let completedAnimations = 0;
     const totalToAnimate = canRefs.current.filter(can => can !== null).length;
-    
+
     if (totalToAnimate === 0) return;
 
     canRefs.current.forEach((canEl, idx) => {
       if (!canEl) return;
       const target = getCanTarget(idx);
-      
+
       gsap.to(canEl, {
         left: target.left,
         scale: target.scale,
@@ -158,7 +158,7 @@ export function FlavorSlider() {
     if (!textContainerRef.current) return;
     const textElements = textContainerRef.current.children;
     if (textElements.length === 0) return;
-    
+
     // Reset and animate
     gsap.set(textElements, { opacity: 0, y: 20 });
     gsap.to(textElements, {
@@ -227,7 +227,7 @@ export function FlavorSlider() {
 
       {/* Content Container */}
       <div className="relative z-10 w-full h-full max-w-[1440px] mx-auto flex flex-col md:flex-row">
-        
+
         {/* Left Side - Text Content */}
         <div className="w-full md:w-[50%] h-full flex flex-col justify-center px-6 md:px-16 lg:px-24 text-white">
           <div ref={textContainerRef} className="max-w-md">
@@ -240,25 +240,16 @@ export function FlavorSlider() {
             <p className="text-base md:text-lg mb-8 opacity-90 leading-relaxed font-medium">
               Vitalizes body and mind. Caffeinated Beverage.
             </p>
-            
+
             {/* Flavor highlight badge */}
-            <div className="flex items-center gap-2 mb-12">
-              <div className="w-5 h-5 rounded-full bg-white/20 flex items-center justify-center">
+            <div className="flex items-center gap-2 mb-4">
+              <div className="w-5 h-5  bg-white/100  flex items-center justify-center mr-60">
                 <div className="w-2 h-2 rounded-full bg-green-400" />
               </div>
-              <span className="text-sm font-medium tracking-wide opacity-80">
-                {activeFlavor.id === "sugarfree" ? "SUGAR FREE" : "CLASSIC BLEND"}
-              </span>
-            </div>
-
-            {/* CTA Buttons */}
-            <div className="flex flex-wrap gap-4">
-              <button className="px-8 py-3 bg-white text-black font-bold rounded-full text-sm hover:bg-white/90 transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-0.5">
-                See product
-              </button>
-              <button className="px-8 py-3 bg-white/10 backdrop-blur-sm border border-white/30 font-semibold rounded-full text-sm hover:bg-white/20 transition-all">
-                Select your flavor
-              </button>
+              {/* CTA Buttons */}
+              <a href="/#flavors"><button className="px-8 py-3 bg-white/10 backdrop-blur-sm border border-white/30 font-semibold rounded-full text-sm hover:bg-white/20 transition-all">
+More flavors
+              </button></a>
             </div>
           </div>
 
