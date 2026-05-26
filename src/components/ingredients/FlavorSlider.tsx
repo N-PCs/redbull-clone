@@ -41,15 +41,15 @@ const sampleFlavors: Flavor[] = [
   },
   {
     id: "tropical",
-    title: "Tropical Edition",
+    title: "Yellow Edition",
     bg: "linear-gradient(135deg, #E88D1D 0%, #F7D44A 100%)",
     image: "./assets/can-tropical.png", // Placeholder
   },
   {
     id: "watermelon",
-    title: "Watermelon Edition",
+    title: "Red Edition",
     bg: "linear-gradient(135deg, #B83B3B 0%, #E77A7A 100%)",
-    image: "./assets/can-watermelon.png", // Placeholder
+    image: "./assets/can-cranberry.png", // Placeholder
   },
 ];
 
@@ -254,7 +254,7 @@ export function FlavorSlider() {
       onTouchStart={handleTouchStart}
       onTouchMove={handleTouchMove}
       onTouchEnd={handleTouchEnd}
-      className="relative w-full h-[620px] md:h-[650px] overflow-hidden font-sans my-20 touch-pan-y"
+      className="relative w-full h-[800px] md:h-[650px] overflow-hidden font-sans my-20 touch-pan-y"
     >
       {/* Animated Left Background */}
       <div
@@ -314,7 +314,7 @@ export function FlavorSlider() {
         </div>
 
         {/* Right Side - 3D Can Carousel */}
-        <div className="relative w-full md:w-[50%] h-[55%] md:h-full flex items-center justify-center overflow-visible pb-12 md:pb-0">
+        <div className="relative w-full md:w-[50%] h-[60%] md:h-full flex items-center justify-center overflow-visible pb-12 md:pb-0">
           <div
             ref={cansContainerRef}
             className="relative w-full h-full"
