@@ -74,6 +74,41 @@ export function FlavorSlider() {
   const cansContainerRef = useRef<HTMLDivElement>(null);
   const canRefs = useRef<(HTMLDivElement | null)[]>([]);
 
+  // Swipe support variables
+  const touchStartX = useRef<number | null>(null);
+  const touchStartY = useRef<number | null>(null);
+  const minSwipeDistance = 50;
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    const touch = e.touches[0];
+    touchStartX.current = touch.clientX;
+    touchStartY.current = touch.clientY;
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    if (touchStartX.current === null || touchStartY.current === null) return;
+    const touch = e.touches[0];
+    const diffX = touchStartX.current - touch.clientX;
+    const diffY = touchStartY.current - touch.clientY;
+
+    if (Math.abs(diffX) > Math.abs(diffY)) {
+      if (Math.abs(diffX) > minSwipeDistance) {
+        if (diffX > 0) {
+          handleNext();
+        } else {
+          handlePrev();
+        }
+        touchStartX.current = null;
+        touchStartY.current = null;
+      }
+    }
+  };
+
+  const handleTouchEnd = () => {
+    touchStartX.current = null;
+    touchStartY.current = null;
+  };
+
   const activeFlavor = filteredFlavors[activeIndex];
   const totalFlavors = filteredFlavors.length;
 
@@ -216,7 +251,10 @@ export function FlavorSlider() {
   return (
     <section
       ref={containerRef}
-      className="relative w-full h-[550px] md:h-[650px] overflow-hidden font-sans my-20"
+      onTouchStart={handleTouchStart}
+      onTouchMove={handleTouchMove}
+      onTouchEnd={handleTouchEnd}
+      className="relative w-full h-[620px] md:h-[650px] overflow-hidden font-sans my-20 touch-pan-y"
     >
       {/* Animated Left Background */}
       <div
@@ -229,32 +267,35 @@ export function FlavorSlider() {
       <div className="relative z-10 w-full h-full max-w-[1440px] mx-auto flex flex-col md:flex-row">
 
         {/* Left Side - Text Content */}
-        <div className="w-full md:w-[50%] h-full flex flex-col justify-center px-6 md:px-16 lg:px-24 text-white">
-          <div ref={textContainerRef} className="max-w-md">
+        <div className="w-full md:w-[50%] h-[45%] md:h-full flex flex-col justify-center items-center text-center md:items-start md:text-left px-6 md:px-16 lg:px-24 text-white pb-6 md:pb-0">
+          <div ref={textContainerRef} className="max-w-md flex flex-col items-center md:items-start">
             <p className="text-[11px] md:text-[13px] font-bold uppercase tracking-[0.2em] mb-5 opacity-80">
               RED BULL ENERGY DRINKS
             </p>
-            <h2 className="text-5xl md:text-6xl lg:text-7xl font-black mb-6 leading-[1.1] tracking-tight">
+            <h2 className="text-4xl md:text-6xl lg:text-7xl font-black mb-6 leading-[1.1] tracking-tight">
               {getDisplayTitle(activeFlavor)}
             </h2>
             <p className="text-base md:text-lg mb-8 opacity-90 leading-relaxed font-medium">
               Vitalizes body and mind. Caffeinated Beverage.
             </p>
 
-            {/* Flavor highlight badge */}
-            <div className="flex items-center gap-2 mb-4">
-              <div className="w-5 h-5  bg-white/100  flex items-center justify-center mr-60">
-                <div className="w-2 h-2 rounded-full bg-green-400" />
+            {/* Veg Badge & CTA Button */}
+            <div className="flex flex-col md:flex-row items-center gap-4 mb-4 justify-center md:justify-start">
+              {/* Distinct Vegetarian mark */}
+              <div className="w-6 h-6 bg-white border-2 border-green-600 flex items-center justify-center shrink-0">
+                <div className="w-3 h-3 rounded-full bg-green-600" />
               </div>
-              {/* CTA Buttons */}
-              <a href="/#flavors"><button className="px-8 py-3 bg-white/10 backdrop-blur-sm border border-white/30 font-semibold rounded-full text-sm hover:bg-white/20 transition-all">
-More flavors
-              </button></a>
+              
+              <a href="/#flavors" className="w-full max-w-[200px] md:max-w-none md:ml-60">
+                <button className="w-full px-8 py-3 bg-white/10 backdrop-blur-sm border border-white/30 font-semibold rounded-full text-sm hover:bg-white/20 transition-all">
+                  More flavors
+                </button>
+              </a>
             </div>
           </div>
 
           {/* Navigation Arrows */}
-          <div className="absolute bottom-12 left-6 md:left-16 lg:left-24 flex gap-4">
+          <div className="hidden md:flex absolute bottom-12 left-6 md:left-16 lg:left-24 gap-4">
             <button
               onClick={handlePrev}
               disabled={isAnimating}
@@ -273,7 +314,7 @@ More flavors
         </div>
 
         {/* Right Side - 3D Can Carousel */}
-        <div className="relative w-full md:w-[50%] h-full flex items-center justify-center overflow-visible">
+        <div className="relative w-full md:w-[50%] h-[55%] md:h-full flex items-center justify-center overflow-visible pb-12 md:pb-0">
           <div
             ref={cansContainerRef}
             className="relative w-full h-full"
@@ -287,7 +328,7 @@ More flavors
                   left: "50%",
                   top: "50%",
                   transform: "translate(-50%, -50%)",
-                  height: "clamp(250px, 50vh, 400px)",
+                  height: "clamp(200px, 45vh, 420px)",
                   width: "auto",
                   zIndex: 0,
                   opacity: 0,
