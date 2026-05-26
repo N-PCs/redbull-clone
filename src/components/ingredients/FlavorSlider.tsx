@@ -8,7 +8,8 @@ const SLIDER_FLAVORS = [
   "sugarfree",
   "pink",
   "tropical", // Yellow Edition
-  "watermelon", // Red Edition
+  "watermelon", 
+  "curuba"  // Green Wdition
 ];
 
 // Define flavor data structure
@@ -50,6 +51,11 @@ const sampleFlavors: Flavor[] = [
     title: "Red Edition",
     bg: "linear-gradient(135deg, #B83B3B 0%, #E77A7A 100%)",
     image: "./assets/can-cranberry.png", // Placeholder
+  },
+  { id: "curuba",
+    title: "Green Edition",
+    bg: "linear-gradient(135deg, #3f873eff 0%, #00ff6eff 100%)",
+    image: "./assets/can-curuba.png", // Placeholder
   },
 ];
 
@@ -328,7 +334,7 @@ export function FlavorSlider() {
                   left: "50%",
                   top: "50%",
                   transform: "translate(-50%, -50%)",
-                  height: "clamp(500px, 70vh, 420px)",
+                  height: "var(--can-height, clamp(500px, 70vh, 420px))",
                   width: "auto",
                   zIndex: 0,
                   opacity: 0,
@@ -342,8 +348,8 @@ export function FlavorSlider() {
                 />
               </div>
             ))}
-          </div>
-        </div>
+          </div>     
+        </div>       
       </div>
 
       {/* Decorative gradient overlay on edges */}

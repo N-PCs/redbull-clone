@@ -20,6 +20,15 @@ export const flavors: Flavor[] = [
     accent: "#FFCC00",
     image: "/assets/can-original1.png",
   },
+    {
+    id: "sugarfree",
+    title: "Sugarfree",
+    tagline: "Same Wings. Zero Sugar.",
+    description: "All the energy you want, none of the sugar you don't.",
+    bg: "linear-gradient(135deg, #2B6CB0 0%, #001E5C 100%)",
+    accent: "#FFCC00",
+    image: "/assets/can-sugarfree.png",
+  },
   {
     id: "watermelon",
     title: "Watermelon",
@@ -38,15 +47,6 @@ export const flavors: Flavor[] = [
     bg: "linear-gradient(135deg, #10B981 0%, #064E3B 100%)",
     accent: "#FFCC00",
     image: "/assets/can-dragonfruit.png",
-  },
-  {
-    id: "sugarfree",
-    title: "Sugarfree",
-    tagline: "Same Wings. Zero Sugar.",
-    description: "All the energy you want, none of the sugar you don't.",
-    bg: "linear-gradient(135deg, #2B6CB0 0%, #001E5C 100%)",
-    accent: "#FFCC00",
-    image: "/assets/can-sugarfree.png",
   },
   {
     id: "tropical",
