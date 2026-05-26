@@ -482,9 +482,14 @@ html.ingredients-route h3,
 }
 
 /* ── Flavor Slider mobile adjustments ── */
-@media (max-width: full) {
+@media (max-width: 767px) {
   .flavor-can {
-    --can-height: 260px; /* Reduced height specifically for mobile */
+    --can-height: 280px; /* Reduced height specifically for mobile */
+  }
+  .flavor-can img {
+    height: 260px !important;
+    width: 125px !important;
+    object-fit: fill !important;
   }
 }
 

@@ -29,6 +29,15 @@ export const flavors: Flavor[] = [
     accent: "#FFCC00",
     image: "/assets/can-sugarfree.png",
   },
+      {
+    id: "zero",
+    title: "Zero",
+    tagline: "Same Wings. Zero Calories.",
+    description: "Zero Calories. 100% Wiiings",
+    bg: "linear-gradient(135deg, #7bb2edff 0%, #5186f1ff 100%)",
+    accent: "#FFCC00",
+    image: "/assets/can-zero.png",
+  },
   {
     id: "watermelon",
     title: "Watermelon",
