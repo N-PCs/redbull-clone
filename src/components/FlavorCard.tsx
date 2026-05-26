@@ -4,7 +4,7 @@ export function FlavorCard({ flavor, hideCan = false }: { flavor: Flavor; hideCa
   return (
     <article
       data-flavor-card={flavor.id}
-      className="group relative overflow-hidden rounded-sm aspect-[2/3] md:aspect-[3/4] flex flex-col"
+      className="group relative overflow-hidden rounded-sm aspect-[3/5] md:aspect-[3/4] flex flex-col"
       style={{ background: flavor.bg }}
     >
       {/* Diagonal accent stripe */}
