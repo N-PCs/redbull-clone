@@ -148,10 +148,6 @@ function Index() {
       <section id="hero" className="relative min-h-[80vh] md:min-h-screen bg-grid pt-2 overflow-hidden">
         <div className="max-w-7xl mx-auto px-6 pt-32 md:pt-24 relative">
           <div className="max-w-2xl relative z-50 md:z-10">
-            <div className="flex items-center gap-3 mb-6">
-              <span className="h-px w-12 bg-[var(--rb-yellow)]" />
-              <span className="text-xs uppercase tracking-[0.4em] text-[var(--rb-yellow)]">Series 2026 / Performance Drop</span>
-            </div>
             <h1 className="display text-[11vw] sm:text-[14vw] md:text-[9vw] leading-[0.85] skew-italic">
               FUEL
               <br />
@@ -194,7 +190,7 @@ function Index() {
           </div>
         </div>
         {/* edge label */}
-        <div className="hidden lg:block absolute right-6 top-1/2 -translate-y-1/2 -rotate-90 origin-right text-[10px] uppercase tracking-[0.6em] text-white/30">
+        <div className="hidden lg:block absolute right-6 top-1/8 -translate-y-3/4 -rotate-90 origin-right text-[15px] uppercase tracking-[0.6em] text-white/30">
           Vitalizes Body & Mind — Est. 1987
         </div>
       </section>
