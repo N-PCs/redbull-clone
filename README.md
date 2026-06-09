@@ -6,7 +6,7 @@ This repository contains a high-fidelity clone of the Red Bull website, showcasi
 The application features a dark, cinematic home page with scroll-triggered animations powered by GSAP, and a separate, light-themed page dedicated to exploring the ingredients of the energy drink.
 
 ## Project Structure 
-
+```
 redbull-clone/
 ├── components.json
 ├── eslint.config.js
@@ -49,7 +49,7 @@ redbull-clone/
 ├── tsconfig.json
 ├── vite.config.ts
 └── wrangler.jsonc
-
+```
 ## Key Features
 
 -   **Interactive Animations**: Smooth, performant animations using GSAP and ScrollTrigger, including a signature floating can that "docks" into a product card on scroll.
