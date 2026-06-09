@@ -5,6 +5,51 @@ This repository contains a high-fidelity clone of the Red Bull website, showcasi
 
 The application features a dark, cinematic home page with scroll-triggered animations powered by GSAP, and a separate, light-themed page dedicated to exploring the ingredients of the energy drink.
 
+## Project Structure 
+
+redbull-clone/
+├── components.json
+├── eslint.config.js
+├── package-lock.json
+├── package.json
+├── public/
+├── README.md
+├── src/
+│   ├── components/
+│   │   ├── Can3D.tsx
+│   │   ├── FlavorCard.tsx
+│   │   ├── ingredients/
+│   │   │   ├── ComparisonChart.tsx
+│   │   │   ├── ComparisonIllustrations.tsx
+│   │   │   ├── FlavorSlider.tsx
+│   │   │   ├── IngredientArrows.tsx
+│   │   │   ├── IngredientHub.tsx
+│   │   │   └── IngredientsNav.tsx
+│   │   ├── ScrollProgressBar.tsx
+│   │   ├── SiteNav.tsx
+│   │   └── ui
+│   ├── data/
+│   │   ├── flavors.ts
+│   │   └── ingredients.ts
+│   ├── hooks/
+│   │   └── use-mobile.tsx
+│   ├── lib/
+│   │   ├── error-capture.ts
+│   │   ├── error-page.ts
+│   │   └── utils.ts
+│   ├── router.tsx
+│   ├── routes/
+│   │   ├── __root.tsx
+│   │   ├── index.tsx
+│   │   └── ingredients.tsx
+│   ├── routeTree.gen.ts
+│   ├── server.ts
+│   ├── start.ts
+│   └── styles.css
+├── tsconfig.json
+├── vite.config.ts
+└── wrangler.jsonc
+
 ## Key Features
 
 -   **Interactive Animations**: Smooth, performant animations using GSAP and ScrollTrigger, including a signature floating can that "docks" into a product card on scroll.
