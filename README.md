@@ -50,6 +50,8 @@ redbull-clone/
 ├── vite.config.ts
 └── wrangler.jsonc
 ```
+## Worflow Diagram
+![workflow-diagram](/worflow.png)
 ## Key Features
 
 -   **Interactive Animations**: Smooth, performant animations using GSAP and ScrollTrigger, including a signature floating can that "docks" into a product card on scroll.
